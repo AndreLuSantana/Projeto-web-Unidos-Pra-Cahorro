@@ -28,8 +28,7 @@ public class Animal implements Serializable{
 	public Animal() {
 	}
 
-	public Animal(Long id, String identificador, Opcoes vacinado, Opcoes castrado, Opcoes retornadoParaRua) {
-		this.id = id;
+	public Animal(String identificador, Opcoes vacinado, Opcoes castrado, Opcoes retornadoParaRua) {
 		this.identificador = identificador;
 		this.vacinado = vacinado;
 		this.castrado = castrado;
