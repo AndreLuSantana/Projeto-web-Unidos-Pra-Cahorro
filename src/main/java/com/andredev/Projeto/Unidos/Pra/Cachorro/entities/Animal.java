@@ -3,9 +3,11 @@ package com.andredev.Projeto.Unidos.Pra.Cachorro.entities;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.andredev.Projeto.Unidos.Pra.Cachorro.enuns.Opcoes;
@@ -21,18 +23,26 @@ public class Animal implements Serializable{
 	private Long id;
 	
 	private String identificador;
+	@Enumerated
 	private Opcoes vacinado;
+	@Enumerated
 	private Opcoes castrado;
+	@Enumerated
 	private Opcoes retornadoParaRua;
+	
+	@ManyToOne
+	private Adotante adotante;
 	
 	public Animal() {
 	}
 
-	public Animal(String identificador, Opcoes vacinado, Opcoes castrado, Opcoes retornadoParaRua) {
+	public Animal(String identificador, Opcoes vacinado, Opcoes castrado, Opcoes retornadoParaRua, Adotante adotante) {
+		super();
 		this.identificador = identificador;
 		this.vacinado = vacinado;
 		this.castrado = castrado;
 		this.retornadoParaRua = retornadoParaRua;
+		this.adotante = adotante;
 	}
 
 	public Long getId() {
@@ -75,6 +85,14 @@ public class Animal implements Serializable{
 		this.retornadoParaRua = retornadoParaRua;
 	}
 
+	public Adotante getAdotante() {
+		return adotante;
+	}
+
+	public void setAdotante(Adotante adotante) {
+		this.adotante = adotante;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -103,7 +121,7 @@ public class Animal implements Serializable{
 	@Override
 	public String toString() {
 		return "Animal [identificador=" + identificador + ", vacinado=" + vacinado + ", castrado=" + castrado
-				+ ", retornadoParaRua=" + retornadoParaRua + "]";
+				+ ", retornadoParaRua=" + retornadoParaRua + ", adotante=" + adotante + "]";
 	}
-	
+
 }
