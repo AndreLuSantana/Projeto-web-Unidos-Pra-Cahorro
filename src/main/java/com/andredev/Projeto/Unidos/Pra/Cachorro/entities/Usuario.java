@@ -22,12 +22,15 @@ public class Usuario {
 	public Usuario() {
 	}
 
-	public Usuario(String nome, String email, String senha, String cargo) {
+	public Usuario(Long id, String nome, String email, String senha, String cargo) {
+		this.id = id;
 		this.nome = nome;
 		this.email = email;
 		this.senha = senha;
 		this.cargo = cargo;
 	}
+
+
 
 	public Long getId() {
 		return id;

@@ -2,11 +2,14 @@ package com.andredev.Projeto.Unidos.Pra.Cachorro.entities;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -30,20 +33,24 @@ public class Animal implements Serializable{
 	@Enumerated
 	private Opcoes retornadoParaRua;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_adotante")
 	private Adotante adotante;
 	
 	public Animal() {
 	}
 
-	public Animal(String identificador, Opcoes vacinado, Opcoes castrado, Opcoes retornadoParaRua, Adotante adotante) {
-		super();
+	public Animal(Long id, String identificador, Opcoes vacinado, Opcoes castrado, Opcoes retornadoParaRua,
+			Adotante adotante) {
+		this.id = id;
 		this.identificador = identificador;
 		this.vacinado = vacinado;
 		this.castrado = castrado;
 		this.retornadoParaRua = retornadoParaRua;
 		this.adotante = adotante;
 	}
+
+
 
 	public Long getId() {
 		return id;

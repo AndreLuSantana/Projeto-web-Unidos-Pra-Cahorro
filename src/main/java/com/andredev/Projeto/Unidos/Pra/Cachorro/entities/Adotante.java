@@ -25,11 +25,15 @@ public class Adotante {
 	private LocalDate dataNascimento;
 	private int telefone;
 	
-	@OneToMany (mappedBy = "adotante", cascade = CascadeType.ALL)
+	@OneToMany (mappedBy = "adotante")
 	private Set<Animal> adotado = new HashSet<>();
 
-	public Adotante(String nome, String email, LocalDate dataNascimento, int telefone, Set<Animal> adotado) {
-		super();
+	public Adotante() {
+		
+	}
+
+	public Adotante(Long id, String nome, String email, LocalDate dataNascimento, int telefone, Set<Animal> adotado) {
+		this.id = id;
 		this.nome = nome;
 		this.email = email;
 		this.dataNascimento = dataNascimento;
@@ -80,9 +84,10 @@ public class Adotante {
 	public Set<Animal> getAdotado() {
 		return adotado;
 	}
-
-	public void setAdotado(Set<Animal> adotado) {
-		this.adotado = adotado;
+	
+	public void adicionarAnimal(Animal animal){
+		 this.adotado.add(animal);
+		 animal.setAdotante(this);
 	}
 
 	@Override
