@@ -6,4 +6,5 @@ import com.andredev.Projeto.Unidos.Pra.Cachorro.entities.Animal;
 
 public interface AnimalRepository extends JpaRepository<Animal, Long>{
 
+	
 }
