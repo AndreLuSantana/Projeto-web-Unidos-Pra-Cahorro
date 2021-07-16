@@ -14,19 +14,16 @@ private Long id;
 	private Opcoes vacinado;
 	private Opcoes castrado;
 	private Opcoes retornadoParaRua;
-	private Adotante adotante;
 	
 	public AnimalDTO() {
 	}
 
-	public AnimalDTO(Long id, String identificador, Opcoes vacinado, Opcoes castrado, Opcoes retornadoParaRua,
-			Adotante adotante) {
+	public AnimalDTO(Long id, String identificador, Opcoes vacinado, Opcoes castrado, Opcoes retornadoParaRua) {
 		this.id = id;
 		this.identificador = identificador;
 		this.vacinado = vacinado;
 		this.castrado = castrado;
 		this.retornadoParaRua = retornadoParaRua;
-		this.adotante = adotante;
 	}
 	
 	public AnimalDTO(Animal entidade) {
@@ -36,7 +33,6 @@ private Long id;
 		vacinado = entidade.getVacinado();
 		castrado = entidade.getCastrado();
 		retornadoParaRua = entidade.getRetornadoParaRua();
-		adotante = entidade.getAdotante();
 	}
 
 
@@ -80,11 +76,4 @@ private Long id;
 		this.retornadoParaRua = retornadoParaRua;
 	}
 
-	public Adotante getAdotante() {
-		return adotante;
-	}
-
-	public void setAdotante(Adotante adotante) {
-		this.adotante = adotante;
-	}
 }

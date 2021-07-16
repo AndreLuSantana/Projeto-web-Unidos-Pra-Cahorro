@@ -33,24 +33,16 @@ public class Animal implements Serializable{
 	@Enumerated
 	private Opcoes retornadoParaRua;
 	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "id_adotante")
-	private Adotante adotante;
-	
 	public Animal() {
 	}
 
-	public Animal(Long id, String identificador, Opcoes vacinado, Opcoes castrado, Opcoes retornadoParaRua,
-			Adotante adotante) {
+	public Animal(Long id, String identificador, Opcoes vacinado, Opcoes castrado, Opcoes retornadoParaRua) {
 		this.id = id;
 		this.identificador = identificador;
 		this.vacinado = vacinado;
 		this.castrado = castrado;
 		this.retornadoParaRua = retornadoParaRua;
-		this.adotante = adotante;
 	}
-
-
 
 	public Long getId() {
 		return id;
@@ -92,14 +84,6 @@ public class Animal implements Serializable{
 		this.retornadoParaRua = retornadoParaRua;
 	}
 
-	public Adotante getAdotante() {
-		return adotante;
-	}
-
-	public void setAdotante(Adotante adotante) {
-		this.adotante = adotante;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -128,7 +112,7 @@ public class Animal implements Serializable{
 	@Override
 	public String toString() {
 		return "Animal [identificador=" + identificador + ", vacinado=" + vacinado + ", castrado=" + castrado
-				+ ", retornadoParaRua=" + retornadoParaRua + ", adotante=" + adotante + "]";
+				+ ", retornadoParaRua=" + retornadoParaRua + "]";
 	}
 
 }

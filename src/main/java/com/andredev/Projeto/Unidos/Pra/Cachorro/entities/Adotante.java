@@ -1,7 +1,8 @@
 package com.andredev.Projeto.Unidos.Pra.Cachorro.entities;
 
 import java.time.LocalDate;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -9,8 +10,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.andredev.Projeto.Unidos.Pra.Cachorro.repositories.AnimalRepository;
 
 @Entity
 @Table(name = "tb_adotante")
@@ -25,14 +31,15 @@ public class Adotante {
 	private LocalDate dataNascimento;
 	private int telefone;
 	
-	@OneToMany (mappedBy = "adotante")
-	private Set<Animal> adotado = new HashSet<>();
+	@OneToMany(cascade = {CascadeType.ALL})
+	@JoinColumn(name="adotante_id")
+	private List<Animal> adotado = new ArrayList<>();
 
 	public Adotante() {
 		
 	}
 
-	public Adotante(Long id, String nome, String email, LocalDate dataNascimento, int telefone, Set<Animal> adotado) {
+	public Adotante(Long id, String nome, String email, LocalDate dataNascimento, int telefone, List<Animal> adotado) {
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
@@ -81,13 +88,14 @@ public class Adotante {
 		this.telefone = telefone;
 	}
 
-	public Set<Animal> getAdotado() {
+	public List<Animal> getAdotado() {
 		return adotado;
 	}
 	
-	public void adicionarAnimal(Animal animal){
-		 this.adotado.add(animal);
-		 animal.setAdotante(this);
+	public void adicionarAnimal(Animal obj){ 
+		Animal animal = new Animal(obj.getId(), obj.getIdentificador(), obj.getVacinado(), obj.getCastrado(), 
+				obj.getRetornadoParaRua());
+		this.adotado.add(animal);
 	}
 
 	@Override
