@@ -21,8 +21,8 @@ public class UsuarioController {
 
 	@GetMapping
 	public ResponseEntity<Set<UsuarioDTO>> findAll(){
-		Set<UsuarioDTO> usuarios = service.findAll();
-		return ResponseEntity.ok().body(usuarios);
+		Set<UsuarioDTO> set = service.findAll();
+		return ResponseEntity.ok().body(set);
 	}
 	
 	@GetMapping("/{id}")

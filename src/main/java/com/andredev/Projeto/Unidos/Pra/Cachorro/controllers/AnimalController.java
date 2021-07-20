@@ -21,8 +21,8 @@ public class AnimalController {
 
 	@GetMapping
 	public ResponseEntity<Set<AnimalDTO>> findAll(){
-		Set<AnimalDTO> animais = service.findAll();
-		return ResponseEntity.ok().body(animais);
+		Set<AnimalDTO> set = service.findAll();
+		return ResponseEntity.ok().body(set);
 	}
 	
 	@GetMapping("/{id}")
