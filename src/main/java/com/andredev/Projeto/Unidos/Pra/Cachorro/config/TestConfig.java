@@ -28,8 +28,6 @@ public class TestConfig implements CommandLineRunner{ // Tudo que estiver dentro
 	private UsuarioRepository usuarioRepository;
 	@Autowired
 	private AdotanteRepository adotanteRepository;
-	@Autowired
-	private AdotanteService adotanteService;
 		
 	@Override
 	public void run(String... args) throws Exception {
@@ -37,18 +35,21 @@ public class TestConfig implements CommandLineRunner{ // Tudo que estiver dentro
 		Animal animal1 = new Animal(null, "Totó", Opcoes.SIM, Opcoes.SIM, Opcoes.NAO);
 		Animal animal2 = new Animal(null, "Bingo", Opcoes.SIM, Opcoes.NAO, Opcoes.SIM);
 		Animal animal3 = new Animal(null, "Nina", Opcoes.SIM, Opcoes.NAO, Opcoes.SIM);
+		animalRepository.saveAll(Arrays.asList(animal1, animal2, animal3));
 		
-		Adotante adotante = new Adotante(null, "André", "andre@hotmail.com", LocalDate.now(), 5055, new ArrayList<>());
+		Adotante adotante = new Adotante(null, "André", "andre@hotmail.com", LocalDate.now(), 5055);
+		Adotante adotante2 = new Adotante(null, "Zé", "ze@hotmail.com", LocalDate.now(), 5805);
+		adotanteRepository.saveAll(Arrays.asList(adotante, adotante2));
+		
 		adotante.adicionarAnimal(animal2);
 		adotante.adicionarAnimal(animal1);
-		Adotante adotante2 = new Adotante(null, "Zé", "ze@hotmail.com", LocalDate.now(), 5805, new ArrayList<>());
 		adotante2.adicionarAnimal(animal3);
 		
-		Usuario usuario = new Usuario(null, "André", "andre@hotmail.com", "123", "Tesoureiro");
+		Usuario usuario = new Usuario(null, "Nane", "nane@hotmail.com", "123", "Emfermeira");
+		
 		
 		animalRepository.saveAll(Arrays.asList(animal1, animal2, animal3));
-		adotanteRepository.save(adotante);
-		adotanteRepository.save(adotante2);
+		adotanteRepository.saveAll(Arrays.asList(adotante, adotante2));
 		usuarioRepository.save(usuario);
 		
 		

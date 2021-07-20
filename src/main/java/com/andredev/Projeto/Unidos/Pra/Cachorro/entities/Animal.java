@@ -33,6 +33,10 @@ public class Animal implements Serializable{
 	@Enumerated
 	private Opcoes retornadoParaRua;
 	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_adotante")
+	private Adotante adotante;
+	
 	public Animal() {
 	}
 
@@ -42,6 +46,15 @@ public class Animal implements Serializable{
 		this.vacinado = vacinado;
 		this.castrado = castrado;
 		this.retornadoParaRua = retornadoParaRua;
+	}
+	
+	public Animal(Long id, String identificador, Opcoes vacinado, Opcoes castrado, Opcoes retornadoParaRua, Adotante adotante) {
+		this.id = id;
+		this.identificador = identificador;
+		this.vacinado = vacinado;
+		this.castrado = castrado;
+		this.retornadoParaRua = retornadoParaRua;
+		this.adotante = adotante;
 	}
 
 	public Long getId() {
@@ -82,6 +95,14 @@ public class Animal implements Serializable{
 
 	public void setRetornadoParaRua(Opcoes retornadoParaRua) {
 		this.retornadoParaRua = retornadoParaRua;
+	}
+
+	public Adotante getAdotante() {
+		return adotante;
+	}
+
+	public void setAdotante(Adotante adotante) {
+		this.adotante = adotante;
 	}
 
 	@Override

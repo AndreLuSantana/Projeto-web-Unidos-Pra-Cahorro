@@ -1,6 +1,7 @@
 package com.andredev.Projeto.Unidos.Pra.Cachorro.dto;
 
-import org.springframework.data.jpa.repository.EntityGraph.EntityGraphType;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.andredev.Projeto.Unidos.Pra.Cachorro.entities.Adotante;
 import com.andredev.Projeto.Unidos.Pra.Cachorro.entities.Animal;

@@ -27,7 +27,5 @@ public class AdotanteService {
 	public AdotanteDTO findById(Long id) {
 		Adotante adotante = repository.getById(id);
 		return new AdotanteDTO(adotante);
-		
-		
 	}
 }

@@ -3,7 +3,6 @@ package com.andredev.Projeto.Unidos.Pra.Cachorro.entities;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -13,10 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import org.springframework.beans.factory.annotation.Autowired;
-
-import com.andredev.Projeto.Unidos.Pra.Cachorro.repositories.AnimalRepository;
 
 @Entity
 @Table(name = "tb_adotante")
@@ -31,22 +26,22 @@ public class Adotante {
 	private LocalDate dataNascimento;
 	private int telefone;
 	
-	@OneToMany(cascade = {CascadeType.ALL})
-	@JoinColumn(name="adotante_id")
-	private List<Animal> adotado = new ArrayList<>();
+	@OneToMany(mappedBy = "adotante")
+	private List<Animal> animalAdotado = new ArrayList<>();
 
 	public Adotante() {
 		
 	}
 
-	public Adotante(Long id, String nome, String email, LocalDate dataNascimento, int telefone, List<Animal> adotado) {
+	public Adotante(Long id, String nome, String email, LocalDate dataNascimento, int telefone) {
+		
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
 		this.dataNascimento = dataNascimento;
 		this.telefone = telefone;
-		this.adotado = adotado;
 	}
+
 
 	public Long getId() {
 		return id;
@@ -89,13 +84,12 @@ public class Adotante {
 	}
 
 	public List<Animal> getAdotado() {
-		return adotado;
+		return animalAdotado;
 	}
 	
 	public void adicionarAnimal(Animal obj){ 
-		Animal animal = new Animal(obj.getId(), obj.getIdentificador(), obj.getVacinado(), obj.getCastrado(), 
-				obj.getRetornadoParaRua());
-		this.adotado.add(animal);
+		obj.setAdotante(this);
+		this.animalAdotado.add(obj);
 	}
 
 	@Override
@@ -126,7 +120,7 @@ public class Adotante {
 	@Override
 	public String toString() {
 		return "Adotante [nome=" + nome + ", email=" + email + ", dataNascimento=" + dataNascimento + ", telefone="
-				+ telefone + ", adotado=" + adotado + "]";
+				+ telefone + ", adotado=" + animalAdotado + "]";
 	}
 	
 	
