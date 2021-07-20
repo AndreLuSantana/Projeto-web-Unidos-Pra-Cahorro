@@ -46,11 +46,12 @@ public class TestConfig implements CommandLineRunner{ // Tudo que estiver dentro
 		adotante2.adicionarAnimal(animal3);
 		
 		Usuario usuario = new Usuario(null, "Nane", "nane@hotmail.com", "123", "Emfermeira");
+		Usuario usuario2 = new Usuario(null, "Bianca", "Bianca@hotmail.com", "356", "Estudante");
 		
 		
 		animalRepository.saveAll(Arrays.asList(animal1, animal2, animal3));
 		adotanteRepository.saveAll(Arrays.asList(adotante, adotante2));
-		usuarioRepository.save(usuario);
+		usuarioRepository.saveAll(Arrays.asList(usuario, usuario2));
 		
 		
 	}

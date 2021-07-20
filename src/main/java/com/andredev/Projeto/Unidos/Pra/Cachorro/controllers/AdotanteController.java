@@ -21,8 +21,8 @@ public class AdotanteController {
 	
 	@GetMapping
 	public ResponseEntity<Set<AdotanteDTO>> findAll(){
-		Set<AdotanteDTO> list = service.findAll();
-		return ResponseEntity.ok().body(list);
+		Set<AdotanteDTO> set = service.findAll();
+		return ResponseEntity.ok().body(set);
 	}
 	
 	@GetMapping("/{id}")
