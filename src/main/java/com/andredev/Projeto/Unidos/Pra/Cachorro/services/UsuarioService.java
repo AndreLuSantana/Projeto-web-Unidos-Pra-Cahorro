@@ -26,10 +26,14 @@ public class UsuarioService {
 		return usuarios.stream().map(x -> new UsuarioDTO(x)).collect(Collectors.toSet());
 	}
 	
-	
 	@Transactional(readOnly = true)
 	public UsuarioDTO findById(Long id) {
 		Usuario usuario = repository.getById(id);
+		return new UsuarioDTO(usuario);
+	}
+	
+	public UsuarioDTO insert(Usuario obj) {
+		Usuario usuario = repository.save(obj);
 		return new UsuarioDTO(usuario);
 	}
 }
