@@ -34,4 +34,8 @@ public class AnimalService {
 		Animal animal = repository.save(obj);
 		return new AnimalDTO(animal);
 	}
+	
+	public void delete(Long id) {
+		repository.deleteById(id);
+	}
 }
