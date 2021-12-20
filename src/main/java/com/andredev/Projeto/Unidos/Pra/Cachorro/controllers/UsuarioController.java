@@ -30,4 +30,6 @@ public class UsuarioController {
 		 UsuarioDTO usuarioDTO = service.findById(id);
 		 return ResponseEntity.ok().body(usuarioDTO);
 	 }
+	
+	
 }

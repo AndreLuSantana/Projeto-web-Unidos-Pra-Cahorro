@@ -28,4 +28,9 @@ public class AdotanteService {
 		Adotante adotante = repository.getById(id);
 		return new AdotanteDTO(adotante);
 	}
+	
+	public AdotanteDTO insert(Adotante obj) {
+		 Adotante adotante = repository.save(obj);
+		 return new AdotanteDTO(adotante);
+	}
 }
