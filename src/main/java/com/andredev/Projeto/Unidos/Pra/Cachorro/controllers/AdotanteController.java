@@ -39,7 +39,7 @@ public class AdotanteController {
 	@PostMapping
 	public ResponseEntity<AdotanteDTO> insert(@RequestBody Adotante obj){
 		AdotanteDTO adotante = service.insert(obj);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().pathSegment("{id}")
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}")
 				.buildAndExpand(adotante.getId()).toUri();
 		return ResponseEntity.created(uri).body(adotante);
 	}

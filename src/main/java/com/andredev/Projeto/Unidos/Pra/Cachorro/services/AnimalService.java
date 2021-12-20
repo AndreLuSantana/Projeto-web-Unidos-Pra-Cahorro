@@ -30,4 +30,8 @@ public class AnimalService {
 		return new AnimalDTO(animal);
 	}
 	
+	public AnimalDTO insert(Animal obj) {
+		Animal animal = repository.save(obj);
+		return new AnimalDTO(animal);
+	}
 }
