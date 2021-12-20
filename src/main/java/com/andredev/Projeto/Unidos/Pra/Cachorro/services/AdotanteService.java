@@ -33,4 +33,8 @@ public class AdotanteService {
 		 Adotante adotante = repository.save(obj);
 		 return new AdotanteDTO(adotante);
 	}
+	
+	public void delete(Long id) {
+		repository.deleteById(id); 
+	}
 }
