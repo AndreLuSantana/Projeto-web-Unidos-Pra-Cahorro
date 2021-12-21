@@ -28,13 +28,29 @@ public class AdotanteService {
 		Adotante adotante = repository.getById(id);
 		return new AdotanteDTO(adotante);
 	}
-	
+	@Transactional()
 	public AdotanteDTO insert(Adotante obj) {
 		 Adotante adotante = repository.save(obj);
 		 return new AdotanteDTO(adotante);
 	}
-	
+	@Transactional()
 	public void delete(Long id) {
 		repository.deleteById(id); 
+	}
+	@Transactional()
+	public AdotanteDTO update(Long id, AdotanteDTO obj ) {
+		@SuppressWarnings("deprecation")
+		Adotante adotante = repository.getOne(id);
+		updatedata(adotante, obj);
+		repository.save(adotante);
+		return new AdotanteDTO(adotante);
+	}
+	@Transactional()
+	private void updatedata(Adotante adotante, AdotanteDTO obj) {
+		adotante.setNome(obj.getNome());
+		adotante.setEmail(obj.getEmail());
+		adotante.setDataNascimento(obj.getDataNascimento());
+		adotante.setTelefone(obj.getTelefone());
+		
 	}
 }
