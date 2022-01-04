@@ -1,6 +1,7 @@
 package com.andredev.Projeto.Unidos.Pra.Cachorro.services;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -9,8 +10,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.andredev.Projeto.Unidos.Pra.Cachorro.dto.AnimalDTO;
+import com.andredev.Projeto.Unidos.Pra.Cachorro.entities.Adotante;
 import com.andredev.Projeto.Unidos.Pra.Cachorro.entities.Animal;
 import com.andredev.Projeto.Unidos.Pra.Cachorro.repositories.AnimalRepository;
+import com.andredev.Projeto.Unidos.Pra.Cachorro.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class AnimalService {
@@ -25,9 +28,9 @@ public class AnimalService {
 	}
 	
 	@Transactional(readOnly = true)
-	public AnimalDTO findById(Long id) {
-		Animal animal = repository.getById(id);
-		return new AnimalDTO(animal);
+	public Animal findById(Long id) {
+		Optional<Animal> adotante = repository.findById(id);
+		return adotante.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
 	
 	public AnimalDTO insert(Animal obj) {

@@ -33,8 +33,8 @@ public class AdotanteController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<AdotanteDTO> findById(@PathVariable Long id){
-		AdotanteDTO adotante = service.findById(id);
+	public ResponseEntity<Adotante> findById(@PathVariable Long id){
+		Adotante adotante = service.findById(id);
 		return ResponseEntity.ok().body(adotante);
 	}
 	

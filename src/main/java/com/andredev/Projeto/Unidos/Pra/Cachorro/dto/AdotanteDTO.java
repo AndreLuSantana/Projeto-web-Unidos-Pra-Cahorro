@@ -2,6 +2,7 @@ package com.andredev.Projeto.Unidos.Pra.Cachorro.dto;
 
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -38,6 +39,10 @@ private Long id;
 		
 		adotado = entidade.getAdotado().stream().map(x-> new AnimalDTO(x)).collect(Collectors.toSet());
 		}
+
+	public AdotanteDTO(Optional<Adotante> adotante) {
+		
+	}
 
 	public Long getId() {
 		return id;

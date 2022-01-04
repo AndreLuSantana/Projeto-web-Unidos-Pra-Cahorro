@@ -1,6 +1,7 @@
 package com.andredev.Projeto.Unidos.Pra.Cachorro.services;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -11,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.andredev.Projeto.Unidos.Pra.Cachorro.dto.AdotanteDTO;
 import com.andredev.Projeto.Unidos.Pra.Cachorro.entities.Adotante;
 import com.andredev.Projeto.Unidos.Pra.Cachorro.repositories.AdotanteRepository;
+import com.andredev.Projeto.Unidos.Pra.Cachorro.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class AdotanteService {
@@ -24,9 +26,11 @@ public class AdotanteService {
 		return adotante.stream().map(x -> new AdotanteDTO(x)).collect(Collectors.toSet());
 	}
 	@Transactional(readOnly = true)
-	public AdotanteDTO findById(Long id) {
-		Adotante adotante = repository.getById(id);
-		return new AdotanteDTO(adotante);
+	public Adotante findById(Long id) {
+	
+		Optional<Adotante> adotante = repository.findById(id);
+		return adotante.orElseThrow(() -> new ResourceNotFoundException(id));
+		
 	}
 	@Transactional()
 	public AdotanteDTO insert(Adotante obj) {

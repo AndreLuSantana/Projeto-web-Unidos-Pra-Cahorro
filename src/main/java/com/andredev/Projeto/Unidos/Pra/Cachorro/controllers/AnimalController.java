@@ -32,9 +32,9 @@ public class AnimalController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<AnimalDTO> findById(@PathVariable Long id){
-		AnimalDTO animalDTO = service.findById(id);
-		return ResponseEntity.ok().body(animalDTO);
+	public ResponseEntity<Animal> findById(@PathVariable Long id){
+		Animal animal = service.findById(id);
+		return ResponseEntity.ok().body(animal);
 	}
 	
 	@PostMapping

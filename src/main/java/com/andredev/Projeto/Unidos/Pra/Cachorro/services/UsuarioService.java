@@ -1,6 +1,7 @@
 package com.andredev.Projeto.Unidos.Pra.Cachorro.services;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -13,6 +14,7 @@ import com.andredev.Projeto.Unidos.Pra.Cachorro.dto.UsuarioDTO;
 import com.andredev.Projeto.Unidos.Pra.Cachorro.entities.Animal;
 import com.andredev.Projeto.Unidos.Pra.Cachorro.entities.Usuario;
 import com.andredev.Projeto.Unidos.Pra.Cachorro.repositories.UsuarioRepository;
+import com.andredev.Projeto.Unidos.Pra.Cachorro.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class UsuarioService {
@@ -27,9 +29,9 @@ public class UsuarioService {
 	}
 	
 	@Transactional(readOnly = true)
-	public UsuarioDTO findById(Long id) {
-		Usuario usuario = repository.getById(id);
-		return new UsuarioDTO(usuario);
+	public Usuario findById(Long id) {
+		Optional<Usuario> adotante = repository.findById(id);
+		return adotante.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
 	
 	public UsuarioDTO insert(Usuario obj) {
